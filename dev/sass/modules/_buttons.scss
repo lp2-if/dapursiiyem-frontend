@@ -53,6 +53,11 @@ $BTN_PADDING: ($space / 3) $space;
     color: $white;
     font-weight: bold;
     border-radius: 100px;
+
+    &.inactive {
+        opacity: 0.5;
+        pointer-events: none;
+    }
 }
 
 .btn--block {

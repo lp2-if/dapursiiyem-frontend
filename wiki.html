@@ -42,7 +42,7 @@
                     <a href="#!" class="navbar-anchor navbar-item-left">Home</a>
                 </li> -->
                 <li class="navbar-item">
-                    <a class="navbar-anchor is-active" href="index.php" >Resep</a>
+                    <a class="navbar-anchor" href="index.html" >Resep</a>
                 </li>
                 <li class="navbar-item">
                     <a href="#!" class="navbar-anchor">
@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="navbar-item">
-                    <a class="navbar-anchor" href="wiki.php">Wiki</a>
+                    <a class="navbar-anchor is-active" href="wiki.html">Wiki</a>
                 </li>
                 <!-- <li class="navbar-item">
                     <a href="#!" class="navbar-anchor navbar-item-right">Help</a>
@@ -61,36 +61,18 @@
 
     <main ng-controller="mainController">
 
-        <div class="loading" ng-class="{'is-active': isLoading}">
-            <i class="fa fa-spinner fa-pulse fa-3x"></i>
-        </div>
-
         <div class="container">
-            <img class="selector-img" src="assets/img/logo-big.png" alt="Dapur si iyem">
-            <h1 class="text-center">Mau masak apa hari ini?</h1>
-            <div class="text-center block">
-                <span style="display:block"><strong>Aku punya...</strong></span>
-                <span class="selector-input">
-                    
-                    <button class="btn selector-item" ng-repeat="item in bahan" ng-bind="item.title" ng-if="item.selected" ng-click="selectBahan(item.id)"></button>
-                    <button class="selector-helper invisible">lala</button>
-                    <button class="btn selector-add" ng-click="modalTrigger()">+</button>
-                </span>
-            </div>
-            <div class="text-center">
-                <button class="btn btn-primary" ng-click="getResepList()">Cari Resep</button>
-            </div>
+            <img class="glossary-title-img" src="assets/img/banner-istilah-masak.jpg" alt="Istilah memasak">
+            <button class="btn" ng-click="modalTrigger()">menumis</button>
         </div>
         
         <div class="modal" ng-class="{'is-active': modalActive}">
             <div class="modal-header">
-                <h2>Pilihan bahan</h2>
+                <h2 ng-bind="glossaryDetail.title"></h2>
             </div>
             <div class="modal-body">
-                <button class="btn selector-item" ng-repeat="item in bahan" ng-bind="item.title" ng-click="selectBahan(item.id)" ng-class="{'is-active': item.selected}"></button>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" ng-click="modalTrigger()">Tambah Bahan</button>
+                <img class="glossary-img" ng-src="{{glossaryDetail.img}}"></img>
+                <p ng-bind="glossaryDetail.desc"></p>
             </div>
             <button class="modal-exit btn" ng-click="modalTrigger()">&times;</button>
         </div>
@@ -100,6 +82,8 @@
     <script>window.myPrefix = '';</script>
     <script src="assets/js/vendor/jquery.min.js"></script>
     <script src="assets/js/vendor/angular.min.js"></script>
+    <script src="assets/js/vendor/angular-route.min.js"></script>
+    <script src="assets/js/vendor/angular-sanitize.min.js"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.js?features=default,promise,fetch"></script>
     <script src="assets/js/main.min.js"></script>
 </body>

@@ -42,7 +42,7 @@
                     <a href="#!" class="navbar-anchor navbar-item-left">Home</a>
                 </li> -->
                 <li class="navbar-item">
-                    <a class="navbar-anchor" href="index.php" >Resep</a>
+                    <a class="navbar-anchor is-active" ng-href="#!" >Resep</a>
                 </li>
                 <li class="navbar-item">
                     <a href="#!" class="navbar-anchor">
@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="navbar-item">
-                    <a class="navbar-anchor is-active" href="wiki.php">Wiki</a>
+                    <a class="navbar-anchor" href="wiki.html">Wiki</a>
                 </li>
                 <!-- <li class="navbar-item">
                     <a href="#!" class="navbar-anchor navbar-item-right">Help</a>
@@ -59,29 +59,17 @@
         </div>
     </nav>
 
-    <main ng-controller="mainController">
 
-        <div class="container">
-            <img class="glossary-title-img" src="assets/img/banner-istilah-masak.jpg" alt="Istilah memasak">
-            <button class="btn" ng-click="modalTrigger()">menumis</button>
-        </div>
-        
-        <div class="modal" ng-class="{'is-active': modalActive}">
-            <div class="modal-header">
-                <h2 ng-bind="glossaryDetail.title"></h2>
-            </div>
-            <div class="modal-body">
-                <img class="glossary-img" ng-src="{{glossaryDetail.img}}"></img>
-                <p ng-bind="glossaryDetail.desc"></p>
-            </div>
-            <button class="modal-exit btn" ng-click="modalTrigger()">&times;</button>
-        </div>
-
+    <main>
+        <ng-view></ng-view>
     </main>
+
 
     <script>window.myPrefix = '';</script>
     <script src="assets/js/vendor/jquery.min.js"></script>
     <script src="assets/js/vendor/angular.min.js"></script>
+    <script src="assets/js/vendor/angular-route.min.js"></script>
+    <script src="assets/js/vendor/angular-sanitize.min.js"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.js?features=default,promise,fetch"></script>
     <script src="assets/js/main.min.js"></script>
 </body>

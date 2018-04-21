@@ -1,0 +1,70 @@
+.resep-list {
+  display: inline-block;
+  width: 100%;
+}
+
+.resep-card {
+  display: inline-block;
+  width: 23%;
+  height: 250px;
+  overflow: hidden;
+  margin: 0 10px 10px 0;
+  //padding: 10px;
+  //border: solid 1px $blue;
+  background: $black20;
+  border-radius: 10px;
+}
+
+.resep-anchor {
+  display: block;
+  color: currentColor;
+}
+
+.resep-card-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.resep-card-title {
+  padding: 10px 10px 0 10px;
+  margin-bottom: 0;
+}
+
+.resep-card-missing {
+  padding: 0 10px;
+  margin-bottom: 0;
+  font-size: $space *0.5;
+}
+
+.white-box {
+  position: relative;
+  display: flex;
+  height: $space * 19;
+  width: 100%;
+  background: $white;
+}
+
+.resep-img {
+  height: 100%;
+  width: 400px;
+  object-fit: cover;
+}
+
+.resep-container {
+  padding: $space;
+  color: $black;
+  font-size: 14px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.resep-home {
+  position: absolute;
+  top: 25px;
+  left: -30px;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+}

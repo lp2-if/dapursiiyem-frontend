@@ -1,0 +1,25 @@
+<div>
+
+    <div class="loading" ng-class="{'is-active': isLoading}">
+        <i class="fa fa-spinner fa-pulse fa-3x"></i>
+    </div>
+
+    <div class="container">
+        <div class="white-box">
+            <a class="" href="#!">
+                <button class="btn resep-home">
+                    <i class="fa fa-chevron-left"></i>
+                </button>
+            </a>
+            <img class="resep-img" ng-src="{{resep.image}}" alt="Resep">
+            <div class="resep-container">
+                <h1 ng-bind="resep.name"></h1>
+                <h4 class="no-space">Bahan-bahan:</h4>
+                <p ng-bind-html="resep.tutorial"></p>
+                <h4 class="no-space">Cara Memasak:</h4>
+                <p ng-bind-html="resep.recipe"></p>
+            </div>
+        </div>
+    </div>
+
+</div>

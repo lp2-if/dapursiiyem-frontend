@@ -63,6 +63,11 @@ a {
         opacity: 1;
         pointer-events: auto;
     }
+    
+    & > * {
+        display: block;
+        transform: translateY(260px);
+    }
 }
 
 .block {

@@ -26,7 +26,7 @@ $black30            : lighten($black, 70%);
 $black20            : lighten($black, 80%);
 $black10            : lighten($black, 90%);
 
-$link               : #0094ed;
+$link               : $blue;
 $link_hover         : darken($link, 10%);
 
 $selection_bg       : #b3d4fc;

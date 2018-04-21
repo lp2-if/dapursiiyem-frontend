@@ -8,7 +8,9 @@
     }
 
     const assets = {
-        _objectFit      : `${path.js}object-fit-images.min.js`
+        _objectFit      : `${path.js}object-fit-images.min.js`,
+        api             : 'http://10.151.252.230/api/v1/'
+        //api             : 'http://10.151.254.201/api/v1/'
     }
 
     const Site = {
@@ -35,64 +37,33 @@
         },
 
         angularModule() {
-            angular.module('dapur-app', [])
+            angular.module('dapur-app', ['ngRoute', 'ngSanitize'])
 
-            .controller('mainController', ['$rootScope', '$scope', '$http', ($rootScope, $scope, $http) => {
+            .controller('mainController', ['$scope', '$http', ($scope, $http) => {
                 $scope.modalActive = false
-                $scope.isLoading = false
+                $scope.resepListActive = false
+                $scope.isLoading = true
                 $scope.glossaryDetail = {
                     img: 'assets/img/logo.png',
                     title: 'Menumis',
                     desc: 'Menumis adalah lorem ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quae repudiandae provident consectetur laudantium, ea minus esse accusantium dolore magni, ab consequatur consequuntur eius temporibus nobis ut nihil saepe nisi?'
                 }
+                $scope.resepList = []
                 $scope.bahanSelected = []
-                $scope.bahan = [
-                    {
-                        id: 1,
-                        img: 'thumb1',
-                        title: 'Ayam Boiler',
-                        selected: false
-                    },
-                    {
-                        id: 2,
-                        img: 'thumb1',
-                        title: 'Daging Sapi',
-                        selected : false
-                    },
-                    {
-                        id: 3,
-                        img: 'thumb1',
-                        title: 'Daging Babi',
-                        selected : false
-                    },
-                    {
-                        id: 4,
-                        img: 'thumb1',
-                        title: 'Telur Ayam',
-                        selected : false
-                    },
-                    {
-                        id: 5,
-                        img: 'thumb1',
-                        title: 'Tahu',
-                        selected : false
-                    },
-                    {
-                        id: 6,
-                        img: 'thumb1',
-                        title: 'Tempe',
-                        selected : false
-                    },
-                    {
-                        id: 7,
-                        img: 'thumb1',
-                        title: 'Ayam Kampung',
-                        selected : false
-                    }]
+                $scope.bahan = []
 
-                
+
                 $scope.modalTrigger = () => {
                     $scope.modalActive = !$scope.modalActive
+                }
+
+                $scope.resepTrigger = () => {
+                    $scope.resepListActive = !$scope.resepListActive
+                }
+
+                $scope.isBahanEmpty = () => {
+                    if ($scope.bahanSelected.length === 0)
+                        return true
                 }
 
                 $scope.selectBahan = (itemId) => {
@@ -108,30 +79,79 @@
                         }
                         return curr
                     })
-                    console.log($scope.bahanSelected)
+                    //console.log($scope.bahanSelected)
                 }
 
                 $scope.getResepList = () => {
                     $scope.isLoading = true
-                    $http.post('http://10.151.254.201/api/v1/food/', $scope.bahanSelected)
-                        .then(res => {
-                            $scope.isLoading = false
-                            console.log(res)
+                    
+                    $http.post(assets.api + 'food', $scope.bahanSelected)
+                    .then(res => {
+                        $scope.isLoading = false
+                        $scope.resepListActive = true
+                        $scope.resepList = res.data.data
+                        console.log($scope.resepList)
+                    })
+                    .catch(err => {
+                        $scope.isLoading = false
+                        alert('Error status: ' + err.status)
+                        console.log(err)
+                    })
+                }
+                
+                $scope.loadBahan = () => {
+                    $http.get(assets.api + 'ingredient')
+                    .then(res => {
+                        $scope.isLoading = false
+                        $scope.bahan = res.data.data.map(curr => {
+                            let val = Object.assign({selected: false}, curr)
+                            return val
                         })
-                        .catch(err => {
-                            $scope.isLoading = false
-                            alert('Error status:' + err.status)
-                            console.log(err)
-                        })
+                        console.log($scope.bahan)
+                    })
+                    .catch(err => {
+                        $scope.isLoading = false
+                        alert('Error status: ' + err.status)
+                        console.log(err)
+                    })
                 }
 
             }])
 
-            .filter('contains', function () {
-                return function (array, needle) {
-                    return array.indexOf(needle) >= 0;
-                };
-            });
+
+            .controller('resepController', ['$http', '$scope', '$routeParams', '$sce', ($http, $scope, $routeParams, $sce) => {
+                $scope.idResep = $routeParams.id
+                $scope.isLoading = true
+                
+                $http.get(assets.api + 'food/' + $scope.idResep)
+                    .then(res => {
+                        $scope.isLoading = false
+                        $scope.resep = res.data.data
+                        console.log($scope.resep)
+                    })
+                    .catch(err => {
+                        $scope.isLoading = false
+                        alert('Error status: ' + err.status)
+                        console.log(err)
+                    })
+                    
+            }])
+
+            .config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
+                $routeProvider
+                .when('/', {
+                    templateUrl: 'home.html',
+                    controller: 'mainController'
+                })
+                .when('/resep/:id?', {
+                    templateUrl: 'resep.html',
+                    controller: 'resepController'
+                })
+                .otherwise({
+                    redirectTo: '404.html'
+                })
+            }])
+            
         }
     }
 

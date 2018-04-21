@@ -1,11 +1,11 @@
 .modal {
   position: fixed;
-  top: $space * 4;
+  top: $space * 2;
   left: 50%;
   z-index: 30;
   opacity: 0;
-  width: 70%;
-  height: 450px;
+  width: 1000px;
+  height: 85vh;
   
   display: flex;
   flex-direction: column;
@@ -32,6 +32,7 @@
 
 .modal-body {
   overflow-y: auto;
+  margin-bottom: $space;
 }
 
 .modal-footer {
