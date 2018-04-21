@@ -1,0 +1,57 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  height: $space * 3;
+  z-index: 20;
+  background: linear-gradient(darken($blue,10%), rgba(0,0,0,0));
+}
+
+.navbar-list {
+  display: block;
+  height: $space * 3;
+  text-align: center;
+}
+
+.navbar-item {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+}
+
+.navbar-anchor {
+  display: block;
+  color: currentColor;
+  text-transform: uppercase;
+  line-height: $space * 3;
+
+  &:hover {
+    color: lighten($blue, 25%);
+  }
+
+  &.is-active {
+    font-weight: bold;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: $white;
+      transform: translateY(-25px);
+    }
+
+    &:hover {
+      color: currentColor;
+    }
+  }
+}
+
+.navbar-separator {
+  height: 1px;
+  width: 70px;
+  background: $white;
+  transform: translateY($space * 1.5);
+  margin: 0 ($space / 1.5);
+}

@@ -1,0 +1,52 @@
+.selector-img {
+  display: block;
+  width: 250px;
+  margin: 0 auto $space auto;
+}
+
+.selector-input {
+  position: relative;
+  display: inline-block;
+  min-width: 200px;
+  max-width: 700px;
+  min-height: $space * 2;
+  padding: 5px;
+  text-align: left;
+  background: $white;
+  border-radius: 30px;
+
+  /* &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 110%;
+    width: 100%;
+    height: 2px;
+    background: $white;
+  } */
+}
+
+.selector-item {
+  display: inline-block;
+  margin-bottom: 5px;
+  border-radius: 100px;
+  padding: 5px 15px;
+  margin: 0 2px;
+
+  &.is-active {
+    background: $blue;
+    color: $white;
+  }
+}
+
+.selector-add {
+  position: absolute;
+  right: 7px;
+  bottom: 5px;
+  border-radius: 100px;
+  width: $space * 1.5;
+  height: $space * 1.5;
+  background: darken($blue, 20%);
+  color: $white;
+  padding: 0;
+}

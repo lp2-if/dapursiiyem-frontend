@@ -1,0 +1,60 @@
+.modal {
+  position: fixed;
+  top: $space * 4;
+  left: 50%;
+  z-index: 30;
+  opacity: 0;
+  width: 70%;
+  height: 450px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: $black80;
+  background: $white;
+  border-radius: $space;
+  padding: $space;
+  transform: translateX(-50%) translateY(50px);
+  pointer-events: none;
+  transition: all .3s ease;
+
+  &.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.modal-header {
+
+}
+
+.modal-body {
+  overflow-y: auto;
+}
+
+.modal-footer {
+
+}
+
+.modal-btn {
+
+}
+
+.modal-selector {
+
+}
+
+.modal-exit {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  width: $space ;
+  height: $space ;
+  border-radius: 100px;
+  color: $white;
+  font-size: $space;
+  background: $blue;
+}
