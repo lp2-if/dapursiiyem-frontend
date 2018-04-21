@@ -90,7 +90,7 @@
                         $scope.isLoading = false
                         $scope.resepListActive = true
                         $scope.resepList = res.data.data
-                        console.log($scope.resepList)
+                        console.log($scope.bahanSelected)
                     })
                     .catch(err => {
                         $scope.isLoading = false
@@ -107,7 +107,7 @@
                             let val = Object.assign({selected: false}, curr)
                             return val
                         })
-                        console.log($scope.bahan)
+                        //console.log($scope.bahan)
                     })
                     .catch(err => {
                         $scope.isLoading = false
@@ -127,7 +127,7 @@
                     .then(res => {
                         $scope.isLoading = false
                         $scope.resep = res.data.data
-                        console.log($scope.resep)
+                        // console.log($scope.resep)
                     })
                     .catch(err => {
                         $scope.isLoading = false

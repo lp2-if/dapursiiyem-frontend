@@ -1312,13 +1312,22 @@ input[type="number"] {
   display: inline-block;
   margin-bottom: 5px;
   border-radius: 100px;
-  padding: 5px 15px;
+  padding: 5px 5px;
   margin: 0 2px 2px 2px;
 }
 
 .selector-item.is-active {
   background: #8FC7B9;
   color: #fff;
+}
+
+.selector-item-img {
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  -o-object-fit: cover;
+     font-family: "object-fit:cover";
+     object-fit: cover;
 }
 
 .selector-add {
@@ -1331,6 +1340,15 @@ input[type="number"] {
   background: #50a08c;
   color: #fff;
   padding: 0;
+}
+
+.selector-item-close {
+  opacity: 0;
+  margin-right: 5px;
+}
+
+.selector-item-close.is-active {
+  opacity: 1;
 }
 
 .modal {

@@ -11,7 +11,12 @@
             <span style="display:block"><strong>Aku punya...</strong></span>
             <span class="selector-input">
                 
-                <button class="btn selector-item" ng-repeat="item in bahan" ng-bind="item.name" ng-if="item.selected" ng-click="selectBahan(item.id)"></button>
+                <button class="btn selector-item" ng-repeat="item in bahan" ng-if="item.selected" ng-click="selectBahan(item.id)">
+                    <img class="selector-item-img" ng-src="{{item.image}}" alt="bahan">
+                    <span ng-bind="item.name"></span>
+                    <span class="selector-item-close is-active">&times;</span>
+                </button>
+
                 <button class="selector-helper invisible">lala</button>
                 <button class="btn selector-add" ng-click="modalTrigger()">+</button>
             </span>
@@ -26,10 +31,14 @@
             <h2>Pilihan bahan</h2>
         </div>
         <div class="modal-body">
-            <button class="btn selector-item" ng-repeat="item in bahan" ng-bind="item.name" ng-click="selectBahan(item.id)" ng-class="{'is-active': item.selected}"></button>
+            <button class="btn selector-item" ng-repeat="item in bahan" ng-click="selectBahan(item.id)" ng-class="{'is-active': item.selected}">
+                <img class="selector-item-img" ng-src="{{item.image}}" alt="bahan">
+                <span ng-bind="item.name"></span>
+                <span class="selector-item-close" ng-class="{'is-active':item.selected}">&times;</span>
+            </button>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="modalTrigger()">Tambah Bahan</button>
+        <div class="modal-footer text-right">
+            <button class="btn btn-primary" ng-click="modalTrigger()">Tambahkan Bahan</button>
         </div>
         <button class="modal-exit btn" ng-click="modalTrigger()">&times;</button>
     </div>
@@ -43,7 +52,6 @@
                 <li class="resep-card" ng-repeat="resepItem in resepList">
                     <a class="resep-anchor" ng-href="#!/resep/{{resepItem.id}}">
                         <img class="resep-card-img" ng-src="{{resepItem.image}}">
-                        <!-- <img class="resep-card-img" src="assets/img/resep-thumb.jpg"> -->
                         <h4 class="resep-card-title" ng-bind="resepItem.name"></h4>
                         <p class="resep-card-missing">Bahan yang kurang: <span ng-bind="resepItem.missing"></span><p>
                     </a>
