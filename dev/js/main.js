@@ -4,7 +4,7 @@
 
     let api
     loadJSON('env.json').then(val => {
-        api = `http://${val.target}/`
+        api = `http://${val.target}/api/v1/`
     })
 
     const path = {
