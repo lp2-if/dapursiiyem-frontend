@@ -2,10 +2,11 @@
 
 ((window, document, undefined) => {
 
-    let api
-    loadJSON('env.json').then(val => {
+    const api = 'http://127.0.0.1:8000/api/v1/'
+    //const api = 'http://10.151.252.230/api/v1/'
+    /* loadJSON('env.json').then(val => {
         api = `http://${val.target}/api/v1/`
-    })
+    }) */
 
     const path = {
         css: `${myPrefix}assets/css/`,
