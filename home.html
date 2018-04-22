@@ -14,7 +14,9 @@
                 <button class="btn selector-item" ng-repeat="item in bahan" ng-if="item.selected" ng-click="selectBahan(item.id)">
                     <img class="selector-item-img" ng-src="{{item.image}}" alt="bahan">
                     <span ng-bind="item.name"></span>
-                    <span class="selector-item-close is-active">&times;</span>
+                    <span class="selector-item-close is-active">
+                        <i class="fa fa-close"></i>
+                    </span>
                 </button>
 
                 <button class="selector-helper invisible">lala</button>
