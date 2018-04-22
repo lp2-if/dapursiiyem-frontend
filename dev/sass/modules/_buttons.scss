@@ -58,6 +58,10 @@ $BTN_PADDING: ($space / 3) $space;
         opacity: 0.5;
         pointer-events: none;
     }
+
+    &:focus, &:hover {
+        background: darken($blue, 25%);
+    }
 }
 
 .btn--block {

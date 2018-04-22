@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="navbar-item">
-                    <a class="navbar-anchor is-active" href="wiki.html">Wiki</a>
+                    <a class="navbar-anchor is-active" href="wiki.html">Iyempedia</a>
                 </li>
                 <!-- <li class="navbar-item">
                     <a href="#!" class="navbar-anchor navbar-item-right">Help</a>
@@ -59,11 +59,47 @@
         </div>
     </nav>
 
-    <main ng-controller="mainController">
+    <main ng-controller="wikiController">
 
         <div class="container">
-            <img class="glossary-title-img" src="assets/img/banner-istilah-masak.jpg" alt="Istilah memasak">
-            <button class="btn" ng-click="modalTrigger()">menumis</button>
+            <div class="glossary-title-img">
+                <h1>Kamus Istilah Memasak</h1>
+            </div>
+
+            <div class="bzg">
+                <div class="bzg_c" data-col="l4">
+                    <button class="btn btn--block glossary-btn" ng-click="modalWikiTrigger('Tumis')">Tumis</button>
+                </div>
+                <div class="bzg_c" data-col="l4">
+                    <button class="btn btn--block glossary-btn" ng-click="modalWikiTrigger('Goreng')">Goreng</button>
+                </div>
+                <div class="bzg_c" data-col="l4">
+                    <button class="btn btn--block glossary-btn" ng-click="modalWikiTrigger('Rebus')">Rebus</button>
+                </div>
+                <div class="bzg_c" data-col="l4">
+                    <button class="btn btn--block glossary-btn" ng-click="modalWikiTrigger('Sangrai')">Sangrai</button>
+                </div>
+                <div class="bzg_c" data-col="l4">
+                    <button class="btn btn--block glossary-btn" ng-click="modalWikiTrigger('Adas Manis')">Adas Manis</button>
+                </div>
+                <div class="bzg_c" data-col="l4">
+                    <button class="btn btn--block glossary-btn" ng-click="modalWikiTrigger('Al Dente')">Al Dente</button>
+                </div>
+                <div class="bzg_c" data-col="l4">
+                    <button class="btn btn--block glossary-btn" ng-click="modalWikiTrigger('Poaching')">Poaching</button>
+                </div>
+                <div class="bzg_c" data-col="l4">
+                    <button class="btn btn--block glossary-btn" ng-click="modalWikiTrigger('Orak Arik')">Orak Arik</button>
+                </div>
+                <div class="bzg_c" data-col="l4">
+                    <button class="btn btn--block glossary-btn" ng-click="modalWikiTrigger('Gandum')">Gandum</button>
+                </div>
+                <div class="bzg_c" data-col="l4">
+                    <button class="btn btn--block glossary-btn" ng-click="modalWikiTrigger('Gilas')">Gilas</button>
+                </div>
+                
+            </div>
+
         </div>
         
         <div class="modal" ng-class="{'is-active': modalActive}">
@@ -74,7 +110,7 @@
                 <img class="glossary-img" ng-src="{{glossaryDetail.img}}"></img>
                 <p ng-bind="glossaryDetail.desc"></p>
             </div>
-            <button class="modal-exit btn" ng-click="modalTrigger()">&times;</button>
+            <button class="modal-exit btn" ng-click="modalWikiTrigger('')">&times;</button>
         </div>
 
     </main>

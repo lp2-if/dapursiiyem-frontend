@@ -1,7 +1,27 @@
 .glossary-img {
-  width: 200px;
+  height: 250px;
+  width: 100%;
+  object-fit: contain;
+  margin-bottom: $space;  
 }
 
 .glossary-title-img {
   width: 100%;
+  background: url(../img/banner-istilah-masak.jpg);
+  background-size: cover;
+  text-align: center;
+  
+  h1 {
+    line-height: $space * 3;
+  }
+}
+
+.glossary-btn {
+  background: darken($blue, 20%);
+  color: $white;
+  margin-bottom: $space / 2;
+  
+  &:focus, &:hover {
+    background: darken($blue, 25%);
+  }
 }

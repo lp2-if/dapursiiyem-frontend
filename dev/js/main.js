@@ -2,6 +2,11 @@
 
 ((window, document, undefined) => {
 
+    let api
+    loadJSON('env.json').then(val => {
+        api = `http://${val.target}/`
+    })
+
     const path = {
         css: `${myPrefix}assets/css/`,
         js : `${myPrefix}assets/js/vendor/`
@@ -9,8 +14,6 @@
 
     const assets = {
         _objectFit      : `${path.js}object-fit-images.min.js`,
-        api             : 'http://10.151.252.230/api/v1/'
-        //api             : 'http://10.151.254.201/api/v1/'
     }
 
     const Site = {
@@ -43,11 +46,6 @@
                 $scope.modalActive = false
                 $scope.resepListActive = false
                 $scope.isLoading = true
-                $scope.glossaryDetail = {
-                    img: 'assets/img/logo.png',
-                    title: 'Menumis',
-                    desc: 'Menumis adalah lorem ipsum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quae repudiandae provident consectetur laudantium, ea minus esse accusantium dolore magni, ab consequatur consequuntur eius temporibus nobis ut nihil saepe nisi?'
-                }
                 $scope.resepList = []
                 $scope.bahanSelected = []
                 $scope.bahan = []
@@ -85,12 +83,12 @@
                 $scope.getResepList = () => {
                     $scope.isLoading = true
                     
-                    $http.post(assets.api + 'food', $scope.bahanSelected)
+                    $http.post(api + 'food', $scope.bahanSelected)
                     .then(res => {
                         $scope.isLoading = false
                         $scope.resepListActive = true
                         $scope.resepList = res.data.data
-                        console.log($scope.bahanSelected)
+                        //console.log($scope.bahanSelected)
                     })
                     .catch(err => {
                         $scope.isLoading = false
@@ -100,7 +98,7 @@
                 }
                 
                 $scope.loadBahan = () => {
-                    $http.get(assets.api + 'ingredient')
+                    $http.get(api + 'ingredient')
                     .then(res => {
                         $scope.isLoading = false
                         $scope.bahan = res.data.data.map(curr => {
@@ -123,7 +121,7 @@
                 $scope.idResep = $routeParams.id
                 $scope.isLoading = true
                 
-                $http.get(assets.api + 'food/' + $scope.idResep)
+                $http.get(api + 'food/' + $scope.idResep)
                     .then(res => {
                         $scope.isLoading = false
                         $scope.resep = res.data.data
@@ -135,6 +133,20 @@
                         console.log(err)
                     })
                     
+            }])
+
+            .controller('wikiController', ['$http', '$scope', '$sce', ($http, $scope, $routeParams, $sce) => {
+                $scope.modalActive = false
+                $scope.glossaryDetail = {
+                    img: 'assets/img/logo-big.png',
+                    title: 'Menumis',
+                    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quae repudiandae provident consectetur laudantium, ea minus esse accusantium dolore magni, ab consequatur consequuntur eius temporibus nobis ut nihil saepe nisi? consectetur laudantium, ea minus esse accusantium.'
+                }
+
+                $scope.modalWikiTrigger = (title) => {
+                    $scope.glossaryDetail.title = title
+                    $scope.modalActive = !$scope.modalActive
+                }
             }])
 
             .config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
@@ -198,5 +210,6 @@
             })
         })
     }
+
 
 })(window, document)
